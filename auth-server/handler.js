@@ -38,14 +38,18 @@ module.exports.getAuthURL = async () => {
 };
 
 module.exports.geAccessToken = async (event) => {
-  // Decode authorization code extracted from the URL query
+  
+//while this code is already defined above, others have rewritten it inside their
+//getAccessToken and getCalendarEvents functions too, I don't know why but I'm trying it.
+  const oAuth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    redirect_uris[0]
+  );
+// Decode authorization code extracted from the URL query
   const code = decodeURIComponent(`${event.pathParameters.code}`);
 
   return new Promise((resolve, reject) => {
-    /**
-     *  Exchange authorization code for access token with a “callback” after the exchange,
-     *  The callback in this case is an arrow function with the results as parameters: “error” and “response”
-     */
     oAuth2Client.getToken(code, (error, response) => {
       if (error) {
         return reject(error);
@@ -65,15 +69,61 @@ module.exports.geAccessToken = async (event) => {
       };
     })
     .catch((error) => {
-      //Handle error
       console.error(error);
       return {
         statusCode: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": true,
-        },
         body: JSON.stringify(error)
       };
     });
 };
+
+module.exports.getCalendarEvents = async (event) => {
+
+  //while this code is defined above, others have rewritten it inside their 
+  //getAccessToken and getCalendarEvents functions too, I don't know why but I'm trying it.
+  const oAuth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    redirect_uris[0]
+  );
+  
+  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+  oAuth2Client.setCredentials({ access_token });
+
+  return new Promise((resolve, reject) => {
+    calendar.events.list(
+      {
+        calendarId: CALENDAR_ID,
+        auth: oAuth2Client,
+        timeMin: new Date().toISOString(),
+        singleEvents: true,
+        orderBy: "startTime",
+      },
+      (error, response) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(response);
+        }
+      }
+    );
+  })
+    .then((results) => {
+      return {
+        statusCode: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
+        body: JSON.stringify({ events: results.data.items })
+      };
+    })
+    .catch((error) => {
+      console.error(error);
+      return {
+        statusCode: 500,
+        body: JSON.stringify(error)
+      };
+    });
+};
+

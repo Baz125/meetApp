@@ -37,7 +37,7 @@ module.exports.getAuthURL = async () => {
   };
 };
 
-module.exports.geAccessToken = async (event) => {
+module.exports.getAccessToken = async (event) => {
   
 //while this code is already defined above, others have rewritten it inside their
 //getAccessToken and getCalendarEvents functions too, I don't know why but I'm trying it.
@@ -46,6 +46,7 @@ module.exports.geAccessToken = async (event) => {
     CLIENT_SECRET,
     redirect_uris[0]
   );
+
 // Decode authorization code extracted from the URL query
   const code = decodeURIComponent(`${event.pathParameters.code}`);
 
@@ -58,6 +59,7 @@ module.exports.geAccessToken = async (event) => {
     });
   })
     .then((results) => {
+
       //Respond with OAuth token
       return {
         statusCode: 200,
@@ -69,7 +71,7 @@ module.exports.geAccessToken = async (event) => {
       };
     })
     .catch((error) => {
-      console.error(error);
+      console.error(4, error);
       return {
         statusCode: 500,
         body: JSON.stringify(error)

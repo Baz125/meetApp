@@ -19,5 +19,5 @@ describe('<NumberOfEvents /> component', () => {
         const numberTextBox = NumberOfEventsComponent.getByPlaceholderText("32");
         await user.type(numberTextBox, '{backspace}{backspace}10');
         expect(numberTextBox).toHaveValue("10");
-    })
+    });
 })

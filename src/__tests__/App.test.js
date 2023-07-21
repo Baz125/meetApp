@@ -54,6 +54,6 @@ describe('<App /> integration', () => {
 
         const EventListDOM = AppDOM.querySelector('#event-list');
         const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
-        expect(allRenderedEventItems.length).toBe(Number(NumberOfEventsInput));
+        expect(allRenderedEventItems.length).toBe(Number(NumberOfEventsInput.value));
     })
 });  

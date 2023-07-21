@@ -7,7 +7,7 @@ const Event = ( {event} ) => {
   return (
     <li className="event">
       <h2>{event && event.summary}</h2>
-      <p>{new Date(event.start.dateTime).toString()}</p>
+      <p className="event-time">{new Date(event.start.dateTime).toString()}</p>
       <p>{event && event.location}</p>
       {showDetails ?
         <p className="details">{event && event.description}</p> : 

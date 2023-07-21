@@ -9,14 +9,12 @@ describe('<NumberOfEvents /> component', () => {
     })
     test('default input value is 32', () => {
         let NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => { }} />);
-        const numberTextBox = NumberOfEventsComponent.getByPlaceholderText("32");
-        expect(numberTextBox).toHaveValue("32");
-        // expect(NumberOfEventsComponent.getByPlaceholderText("32")).toBeInTheDocument();
+        expect(NumberOfEventsComponent.getByDisplayValue("32")).toBeInTheDocument();
     })
     test('value of number-input changes as user types', async () => {
         const user = userEvent.setup();
         let NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={() => { }} />);
-        const numberTextBox = NumberOfEventsComponent.getByPlaceholderText("32");
+        const numberTextBox = NumberOfEventsComponent.getByDisplayValue("32");
         await user.type(numberTextBox, '{backspace}{backspace}10');
         expect(numberTextBox).toHaveValue("10");
     });

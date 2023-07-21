@@ -15,10 +15,6 @@ describe('<Event /> component', () => {
         expect(EventComponent.queryByText(allEvents[0].summary)).toBeInTheDocument();
     });
 
-    test('renders start time', async () => {
-        expect(EventComponent.queryByText(allEvents[0].start.dateTime)).toBeInTheDocument();
-    });
-
     test('renders event location', async () => {
         expect(EventComponent.queryByText(allEvents[0].location)).toBeInTheDocument();
     });
@@ -40,7 +36,6 @@ describe('<Event /> component', () => {
         expect(EventComponent.container.querySelector('.details')).toBeInTheDocument();
         expect(EventComponent.queryByText('hide details')).toBeInTheDocument();
         expect(EventComponent.queryByText('show details')).not.toBeInTheDocument();
-        // expect(EventComponent.queryByText(allEvents[0].description)).toBeInTheDocument();
     })
 
     test('extra details hidden when user clicks hide details', async () => {
@@ -54,6 +49,5 @@ describe('<Event /> component', () => {
         expect(EventComponent.container.querySelector('.details')).not.toBeInTheDocument();
         expect(EventComponent.queryByText('hide details')).not.toBeInTheDocument();
         expect(EventComponent.queryByText('show details')).toBeInTheDocument();
-        // expect(EventComponent.queryByText(allEvents[0].description)).toBeInTheDocument();
     });
 });

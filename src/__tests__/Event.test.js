@@ -16,7 +16,7 @@ describe('<Event /> component', () => {
     });
 
     test('renders start time', async () => {
-        expect(EventComponent.queryByText(allEvents[0].created)).toBeInTheDocument();
+        expect(EventComponent.queryByText(allEvents[0].start.dateTime)).toBeInTheDocument();
     });
 
     test('renders event location', async () => {

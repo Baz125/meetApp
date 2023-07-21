@@ -1,4 +1,40 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: #494949;
+  padding-bottom: 0%;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.navbar-search {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 10px;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search {
+  padding-right: 10px;
+}
+
+.content {
+  padding: 10px;
+}
+
 .App {
   text-align: center;
   padding: 2% 5%;
@@ -85,4 +121,29 @@ input[type="number"] {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+}
+
+.link {
+  background-color: #0B5CFF;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.link:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.details-btn {
+    margin-right: 5px;;
+}
+
+.link:active {
+  transform: translateY(0);
 }

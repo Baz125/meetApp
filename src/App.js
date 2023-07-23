@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import logo from "./meetApp_Logo.png"
-import { Navbar, Container } from 'react-bootstrap';
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -41,9 +40,11 @@ const App = () => {
           <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
         </div>
       </nav>
-      <h4>Number of Events</h4>
-      <NumberOfEvents setCurrentNOE={setCurrentNOE} />
-      <EventList events={events} />  
+      <div className="body">
+        <h4>Number of Events</h4>
+        <NumberOfEvents setCurrentNOE={setCurrentNOE} />
+        <EventList events={events} />  
+      </div>
     </div>
   );
 }

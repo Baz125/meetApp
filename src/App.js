@@ -3,8 +3,9 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import { useEffect, useState } from 'react';
 import { extractLocations, getEvents } from './api';
-
 import './App.css';
+import logo from "./meetApp_Logo.png"
+import { Navbar, Container } from 'react-bootstrap';
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -14,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     fetchData();
-  }, [currentCity]);
+  }, [currentCity, currentNOE]);
 
   const fetchData = async () => {
     const allEvents = await getEvents();
@@ -27,11 +28,26 @@ const App = () => {
 
   return (
     <div className="App">
-      <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
-      <NumberOfEvents />
-      <EventList events={events}/>
+      <nav className="navbar">
+        <div className="navbar-logo">
+          <a href="https://Baz125.github.io/meetApp/">
+            <img src={logo} alt="meet-app-logo" width="100" height="100" />
+          </a>
+        </div>
+        <div className="navbar-search">
+          <div className="search">
+            <h5>Search for a city</h5>
+          </div>
+          <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
+        </div>
+      </nav>
+      <h4>Number of Events</h4>
+      <NumberOfEvents setCurrentNOE={setCurrentNOE} />
+      <EventList events={events} />  
     </div>
   );
 }
 
 export default App;
+
+

@@ -7,7 +7,7 @@ const Event = ( {event} ) => {
   return (
     <li className="event">
       <h2>{event && event.summary}</h2>
-      <p>{event && event.created}</p>
+      <p className="event-time">{new Date(event.start.dateTime).toString()}</p>
       <p>{event && event.location}</p>
       {showDetails ?
         <p className="details">{event && event.description}</p> : 
@@ -17,7 +17,7 @@ const Event = ( {event} ) => {
         <a href={event.htmlLink}>See details on Google Calendar</a> :
         null
       }
-      <button className="details-btn" onClick={() => {
+      <button className="details-btn link" onClick={() => {
       showDetails ? setShowDetails(false) : setShowDetails(true)
       }}>{showDetails ? "hide details" : "show details" }</button>
     </li>

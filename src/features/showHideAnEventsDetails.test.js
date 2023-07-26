@@ -50,7 +50,7 @@ defineFeature(feature, test => {
                 expect(eventDetailsElement).toBeInTheDocument
             });
         });
-    });
+    })
 
     test('User can collapse an event to hide details.', ({ given, when, then }) => {
         let AppComponent; 

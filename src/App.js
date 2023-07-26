@@ -41,6 +41,15 @@ const App = () => {
         </div>
       </nav>
       <div className="body">
+        <h1>Welcome to meetApp!</h1>
+        <h3>A place to learn about events in your city</h3>
+        <h4>Please help me by testing some of the functionality:</h4>
+        <ul>
+          <li>Click details button to expand an event to and see more information</li>
+          <li>View the Event in Google Calendar</li>
+          <li>Change the number of events displayed </li>
+          <li>Filter events by a city</li>
+        </ul>
         <h4>Number of Events</h4>
         <NumberOfEvents setCurrentNOE={setCurrentNOE} />
         <EventList events={events} />  

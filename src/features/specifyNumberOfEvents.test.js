@@ -19,7 +19,7 @@ defineFeature(feature, test => {
             const EventListDOM = AppDOM.querySelector('#event-list');
             await waitFor(() => {
                 const EventListItems = within(EventListDOM).queryAllByRole('listitem');
-                expect(EventListItems.length).toBe(32);               
+                expect(EventListItems.length).toBe(32);
             });
         });
     });
@@ -27,10 +27,12 @@ defineFeature(feature, test => {
         let AppComponent;
         let numberTextBox;
         let NumberOfEventsDOM;
+        let EventsListDOM;
         given('the user is looking at a list of events', async () => {
             AppComponent = render(<App />);
             const AppDOM = AppComponent.container.firstChild;
             NumberOfEventsDOM = AppDOM.querySelector('#number-of-events')
+            EventsListDOM = AppDOM.querySelector('#event-list')
             await waitFor(() => {
                 numberTextBox = within(NumberOfEventsDOM).queryByRole('textbox');
             });
@@ -42,11 +44,8 @@ defineFeature(feature, test => {
 
         });
         then('the selected/inputted number of events will be displayed', async () => {
-            await waitFor(() => {
-                const EventListItems = within(NumberOfEventsDOM).queryAllByRole('listitem');
-                console.log('after input: ', EventListItems);
-                expect(EventListItems.length).toBe((numberTextBox).value);
-            });
+            const EventListItems = within(EventsListDOM).queryAllByRole('listitem');
+            expect(EventListItems.length).toEqual(Number(numberTextBox.value));
         });
     });
 });

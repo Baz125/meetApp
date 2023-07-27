@@ -188,3 +188,19 @@ input[type="number"] {
     width: 40%;
   }
 }
+
+h4 {
+  margin-bottom: 0;
+}
+
+.tester-instructions {
+  margin-top: 0;
+}
+
+.alerts-container {
+  position: fixed;
+  top: 0px;
+  right: 15px;
+  width: 250px;
+  z-index: 1000;
+}

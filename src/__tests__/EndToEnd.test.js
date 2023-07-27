@@ -1,4 +1,5 @@
-import puppeteer from 'puppeteer';
+const puppeteer = require('puppeteer');
+import { waitFor } from '@testing-library/react';
 
 describe('show/hide event details', () => {
     let browser;
@@ -28,7 +29,7 @@ describe('show/hide event details', () => {
   test('User can expand an event to see details', async () => {
     await page.click('.event .details-btn');
     const eventDetails = await page.$('.event .details');
-    expect(eventDetails).toBeDefined();
+    expect(eventDetails).not.toBeNull();
   });
     
   test('User can collapse an event to hide details', async () => {
@@ -63,7 +64,7 @@ afterAll(() => {
       const eventElements = document.querySelectorAll('.event');
       const topTwoEvents = Array.from(eventElements).slice(0, 2);
       return topTwoEvents.map(eventElement => {
-        const locationElement = eventElement.querySelector('p');
+        const locationElement = eventElement.querySelector('p:nth-child(3)');
         return locationElement.textContent;
       });
     });
@@ -75,23 +76,35 @@ afterAll(() => {
 
   test('User should see a list of suggestions when they search for a city', async () => {
     await page.click('#city-search')
+    await page.type('#city-search', 'Berlin')
 
-    const citySuggestions = await page.$('.suggestions');
-    expect(citySuggestions).toBeDefined()
-  })
+    await waitFor( async () => {
+      const citySuggestions = await page.$('.suggestions');
+      expect(citySuggestions).toBeDefined();
+    });
+  });
 
   test('User can select a city from the suggested list', async () => {
     await page.click('.city');
 
-    await page.type('.city', 'Berlin');
+    // await page.type('.city', 'Berlin'); Berlin was already typed in the last test, so typing it again will show BerlinBerlin and there will be no .selection items available for click
     
     await page.click('.selection');
 
-    const eventListDOM = await page.$('#event-list');
-    page.waitForFunction(() => {
-      const eventListItem = eventListDOM.querySelector('.event');
-      const locationElement = eventListItem.querySelector('p');
-      expect(locationElement.textContent).toEqual('Berlin, Germany')
+    const locationElementText = await page.evaluate(() => {
+      const eventListItem = document.querySelector('#event-list .event');
+      const locationElement = eventListItem.querySelector('p:nth-child(3)');
+      return locationElement.textContent;
     })
+
+    expect(locationElementText).toEqual('Berlin, Germany')
   })
-})
+
+//     const eventListDOM = await page.$('#event-list');
+//     page.waitForFunction(() => {
+//       const eventListItem = eventListDOM.querySelector('.event');
+//       const locationElement = eventListItem.querySelector('p');
+//       expect(locationElement.textContent).toEqual('Berlin, Germany')
+//     })
+//   })
+});

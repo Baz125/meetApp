@@ -4,6 +4,7 @@ import App from '../App';
 import { getEvents } from '../api';
 import userEvent from '@testing-library/user-event';
 
+
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 
 defineFeature(feature, test => {
@@ -44,8 +45,10 @@ defineFeature(feature, test => {
 
         });
         then('the selected/inputted number of events will be displayed', async () => {
-            const EventListItems = within(EventsListDOM).queryAllByRole('listitem');
-            expect(EventListItems.length).toEqual(Number(numberTextBox.value));
+            waitFor(() => {
+                const EventListItems = within(EventsListDOM).queryAllByRole('listitem');
+                expect(EventListItems.length).toEqual(Number(numberTextBox.value));
+            });
         });
     });
 });

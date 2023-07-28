@@ -78,17 +78,14 @@ afterAll(() => {
     await page.click('#city-search')
     await page.type('#city-search', 'Berlin')
 
-    await waitFor( async () => {
-      const citySuggestions = await page.$('.suggestions');
-      expect(citySuggestions).toBeDefined();
-    });
+    const citySuggestions = await page.$$('.suggestions li');
+    const suggestionElements = citySuggestions.length;
+    expect(suggestionElements).toBeGreaterThan(1);
   });
 
   test('User can select a city from the suggested list', async () => {
     await page.click('.city');
 
-    // await page.type('.city', 'Berlin'); Berlin was already typed in the last test, so typing it again will show BerlinBerlin and there will be no .selection items available for click
-    
     await page.click('.selection');
 
     const locationElementText = await page.evaluate(() => {
@@ -99,12 +96,4 @@ afterAll(() => {
 
     expect(locationElementText).toEqual('Berlin, Germany')
   })
-
-//     const eventListDOM = await page.$('#event-list');
-//     page.waitForFunction(() => {
-//       const eventListItem = eventListDOM.querySelector('.event');
-//       const locationElement = eventListItem.querySelector('p');
-//       expect(locationElement.textContent).toEqual('Berlin, Germany')
-//     })
-//   })
 });

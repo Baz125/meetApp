@@ -6,16 +6,19 @@ const Event = ( {event} ) => {
 
   return (
     <li className="event">
-      <h2>{event && event.summary}</h2>
+      <h2 className="event-summary">{event && event.summary}</h2>
       <p className="event-time">{new Date(event.start.dateTime).toString()}</p>
       <p>{event && event.location}</p>
       {showDetails ?
-        <p className="details">{event && event.description}</p> : 
+        <a className="calendar-button" href={event.htmlLink} target="_blank" rel="noopener noreferrer">See details on Google Calendar</a> :
         null
       }
       {showDetails ?
-        <a href={event.htmlLink}>See details on Google Calendar</a> :
-        null
+        <>
+          <h3>About the event:</h3>
+          <p className="details">{event && event.description}</p>  
+        </> :
+        null   
       }
       <button className="details-btn link" onClick={() => {
       showDetails ? setShowDetails(false) : setShowDetails(true)

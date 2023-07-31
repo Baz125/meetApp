@@ -1,6 +1,8 @@
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
+import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 import { useEffect, useState } from 'react';
 import { extractLocations, getEvents } from './api';
 import './App.css';
@@ -53,16 +55,13 @@ const App = () => {
       <div className="body">
         <h1>Welcome to meetApp!</h1>
         <h3>Find events in your city</h3>
-        <h4>Please help me by testing some of the functionality:</h4>
-        <ul className="tester-instructions">
-          <li>1- Change the number of events displayed </li>
-          <li>2- Filter events by a city</li>
-          <li>3- Click details button to expand an event to and see more information</li>
-          <li>4- Click to view the event in Google Calendar</li>
-        </ul>
         <h4>Number of Events</h4>
         <NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        <div className='charts-container'>
+          <CityEventsChart allLocations={allLocations} events={events} />
+          <EventGenresChart events={events} />
+        </div>
         <EventList events={events} />  
       </div>
     </div>

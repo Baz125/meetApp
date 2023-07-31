@@ -18,4 +18,21 @@ const MESSAGES_TO_IGNORE = [
     if (!ignoreMessage) originalError(...args);
   }
 
-  jest.setTimeout(30000);
+jest.setTimeout(30000);
+  
+const { ResizeObserver } = window;
+
+beforeEach(() => {
+  //@ts-ignore
+  delete window.ResizeObserver;
+  window.ResizeObserver = jest.fn().mockImplementation(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+    disconnect: jest.fn(),
+  }));
+});
+
+afterEach(() => {
+  window.ResizeObserver = ResizeObserver;
+  jest.restoreAllMocks();
+});

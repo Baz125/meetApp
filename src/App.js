@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import logo from "./meetApp_Logo.png"
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 const App = () => {
   const [events, setEvents] = useState([]);
@@ -16,18 +18,31 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
 
   useEffect(() => {
+    if (navigator.onLine) {
+      setWarningAlert("");
+    } else {
+      setWarningAlert("You're currently offline so we're displaying events were refreshed the last time you were online. They may not be up to date");
+    }
     fetchData();
   }, [currentCity, currentNOE]);
 
   const fetchData = async () => {
-    const allEvents = await getEvents();
-    const filteredEvents = currentCity === "See all cities" ?
-      allEvents :
-      allEvents.filter(event => event.location === currentCity)
+    try {
+      NProgress.start();
+      const allEvents = await getEvents();
+      const filteredEvents = currentCity === "See all cities" ?
+        allEvents :
+        allEvents.filter(event => event.location === currentCity)
       setEvents(filteredEvents?.slice(0, currentNOE) || []);
-    setAllLocations(extractLocations(allEvents));
+      setAllLocations(extractLocations(allEvents));
+      NProgress.done();
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      NProgress.done();
+    }
   };
 
   return (
@@ -58,6 +73,7 @@ const App = () => {
         <h4>Number of Events</h4>
         <NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         <div className='charts-container'>
           <CityEventsChart allLocations={allLocations} events={events} />
           <EventGenresChart events={events} />

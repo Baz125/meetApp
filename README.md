@@ -1,4 +1,6 @@
-meetApp is a serverless progressive web application(PWA) built using Test-Driven Development techniques. meetApp ingests events from the Google Calendar API and allows users to filter events by city, see more details about events, and supports onffline use.
+Find events happening in your city!
+
+meetApp is a serverless progressive web application(PWA) built using the principles of Test-Driven Development. meetApp ingests events from the Google Calendar API and allows users to filter events by city, see more details about events, and supports onffline use.
 
 The app uses React, OAuth2 authentication flow, serverless functions with AWS Lambda. It passes Lighthouse's PWA checklist and is monitored by an online performance monitoring tool.
 

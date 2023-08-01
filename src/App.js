@@ -24,7 +24,7 @@ const App = () => {
     if (navigator.onLine) {
       setWarningAlert("");
     } else {
-      setWarningAlert("You're currently offline so we're displaying events were refreshed the last time you were online. They may not be up to date");
+      setWarningAlert("You're currently offline so events may not be up to date");
     }
     fetchData();
   }, [currentCity, currentNOE]);

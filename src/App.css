@@ -222,3 +222,6 @@ h4 {
     grid-template-columns: 1fr ;
   }
 }
+.details-btn {
+  margin-bottom: 0px;
+}

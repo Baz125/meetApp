@@ -133,6 +133,7 @@ input[type="number"] {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+  margin-bottom: 0px;
 }
 
 .calendar-button {
@@ -177,6 +178,8 @@ input[type="number"] {
   width: 80%;
 }
 
+
+
 @media (min-width: 768px) {
   .body {
     width: 60%;
@@ -185,7 +188,7 @@ input[type="number"] {
 
 @media (min-width: 1024px) {
   .body{
-    width: 40%;
+    width: 80%;
   }
 }
 
@@ -203,4 +206,19 @@ h4 {
   right: 15px;
   width: 250px;
   z-index: 1000;
+}
+
+.details {
+  margin-bottom: 10px;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 768px) {
+  .charts-container {
+    grid-template-columns: 1fr ;
+  }
 }

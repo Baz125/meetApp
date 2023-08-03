@@ -71,7 +71,7 @@ const App = () => {
         <h1>Welcome to meetApp!</h1>
         <h3>Find events in your city</h3>
         <h4>Number of Events</h4>
-        <NumberOfEvents setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
+        <NumberOfEvents numberInput={currentNOE} setCurrentNOE={setCurrentNOE} setErrorAlert={setErrorAlert} />
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
         {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
         <div className='charts-container'>

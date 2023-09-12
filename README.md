@@ -40,6 +40,10 @@ An authentication flow is built using a serverless function on AWS Lambda and Go
 
 This app has been integrated with Attatus real time monitoring which is configured to alert for any issues in production.
 
+## Deployment
+
+This project is currently deployed on Github Pages: https://baz125.github.io/meetApp/
+
 ## Features and Scenarios
 
 Feature 1: Filter Events by City

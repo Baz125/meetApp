@@ -21,6 +21,7 @@ This is a portfolio project focussing on severless funcitons, OAuth and Test-Dri
 - React
 - Jest
 - Cucumber
+- Puppeteer
 - Atatus Performance Monitoring
 - AWS Lambda serverless functions
 - Recharts

@@ -11,6 +11,7 @@ This is a portfolio project focussing on severless funcitons, OAuth and Test-Dri
 - [Technologies Used](#technologies-used)
 - [Authentication](#authentication)
 - [Performance Monitoring](#real-time-monitoring)
+- [Deployment](#deployment)
 - [Features and User Scenarios](#features-and-scenarios)
 
 

@@ -10,7 +10,7 @@ This is a portfolio project focussing on severless funcitons, OAuth and Test-Dri
 
 - [Technologies Used](#technologies-used)
 - [Authentication](#authentication)
-- [Monitoring](#real-time-monitoring)
+- [Performance Monitoring](#real-time-monitoring)
 - [Features and User Scenarios](#features-and-scenarios)
 
 
@@ -36,7 +36,7 @@ This app is currently deployed on GitHub Pages: https://baz125.github.io/meetApp
 
 An authentication flow is built using a serverless function on AWS Lambda and Google OAuth. This is currently the only login option so users will need a Google accout to access.
 
-## Real time monitoring
+## Real-time Monitoring
 
 This app has been integrated with Attatus real time monitoring which is configured to alert for any issues in production.
 

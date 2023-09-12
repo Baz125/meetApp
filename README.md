@@ -1,6 +1,30 @@
+# MeetApp
+
 Find events happening in your city!
 
 meetApp is a serverless progressive web application(PWA) built using the principles of Test-Driven Development. meetApp ingests events from the Google Calendar API and allows users to filter events by city, see more details about events, and supports onffline use.
+
+This is a portfolio project focussing on severless funcitons, OAuth and Test-Driven Development and Continuous Development.
+
+## Table of Contents
+
+- [Technologies Used](#technologies-used)
+- [Authentication](#authentication)
+- [Monitoring](#real-time-monitoring)
+- [Features and User Scenarios](#features-and-scenarios)
+
+
+## Technologies Used
+
+- Node.js
+- React
+- Jest
+- Cucumber
+- Atatus Performance Monitoring
+- AWS Lambda serverless functions
+- Recharts
+- Google OAuth
+- Google calendar API
 
 The app uses React, OAuth2 authentication flow, serverless functions with AWS Lambda. It passes Lighthouse's PWA checklist and is monitored by an online performance monitoring tool.
 
@@ -8,7 +32,15 @@ Serverless functions are used to for OAuth and for managing API calls from Goole
 
 This app is currently deployed on GitHub Pages: https://baz125.github.io/meetApp/
 
-Features and Scenarios
+## Authentication
+
+An authentication flow is built using a serverless function on AWS Lambda and Google OAuth. This is currently the only login option so users will need a Google accout to access.
+
+## Real time monitoring
+
+This app has been integrated with Attatus real time monitoring which is configured to alert for any issues in production.
+
+## Features and Scenarios
 
 Feature 1: Filter Events by City
 
